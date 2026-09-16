@@ -1,0 +1,10 @@
+title: Cinefin
+description: >-
+  Cinefin turns your movie collection into a real night at the pictures.
+  Open source self hosted software
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cinefin - a Theater at Home</title>
+<meta name="description" content="Cinefin turns your movie collection into a real night at the pictures. Open source self hosted software" />
+<meta name="theme-color" content="#eff1f6" />
+<script>
+  // Light is intentional default; only an explicit saved choice restores dark.
+  if (localStorage.getItem('cinefin-theme') === 'dark') {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
+<link rel="icon" type="image/png" href="/assets/logo.png" />
+<link rel="stylesheet" href="/fonts.css" />
+<link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <div class="wrap">
+    <nav>
+      <a class="lk" href="/" aria-label="Cinefin home">
+        <img class="mk-img mk-nav mk-light" src="/assets/logo.png" width="25" height="34" alt="" />
+        <img class="mk-img mk-nav mk-dark" src="/assets/logo-dark.png" width="25" height="34" alt="" />
+        <span class="name">Cinefin</span>
+      </a>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+        <svg class="theme-icon light-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.2A8.4 8.4 0 0 1 9.8 3.8 8.4 8.4 0 1 0 20.2 14.2Z"></path></svg>
+        <svg class="theme-icon dark-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+<div class="hero-bg">
+  <header class="hero wrap">
+    <h1>A theater<span class="accent"> at home.</span></h1>
+    <p class="sub">Turn your digital film collection into a functioning theater!
+                  Cinefin manages and plays trailers, ratings cards, custom
+                  pre-roll and all sorts of user media. Build out programmes,
+                  schedule screenings, print tickets, and run a theater at home.</p>
+    <p class="overline"><span class="free">Free and open-source</span><span class="avail">Coming soon for Linux &amp; Windows</span></p>
+    <form class="signup" data-signup action="https://buttondown.com/api/emails/embed-subscribe/cinefin" method="post" novalidate>
+      <label class="sr-only" for="signup-email">Email address</label>
+      <div class="controls">
+        <input id="signup-email" name="email" type="email" required
+               placeholder="you@example.com" autocomplete="email" />
+        <button type="submit">Get updates</button>
+      </div>
+      <p class="signup-note" role="status" aria-live="polite">Release news only · no spam · <a href="privacy.html">privacy</a></p>
+    </form>
+  </header>
+
+  <div class="hero-shot">
+    <div class="window">
+      <img src="assets/library.webp" alt="The Cinefin movie library" />
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="features">
+    <h2 class="reveal">Current Features</h2>
+    <ul class="checklist">
+      <li class="reveal"><span class="tick">✓</span><span><b>Free and open-source:</b> self-hosted on your own hardware, no accounts, no subscriptions, no telemetry</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Sync your movie libraries</b> from Plex and Jellyfin</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Builds programmes:</b> trailers, pre-roll, home automation, movies</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Playout via MPV:</b> The player comes embedded or you can connect your own instance (local or network)</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Custom pre-roll</b> for your own media, ads or announcements</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Configurable trailer matching</b> that match genre, year and certification of upcoming movies</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Fully configurable</b> through the use of re-usable programme templates</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Design and load title cards</b> for screenings</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Home Assistant and generic REST integration</b> for home automation</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Generates ratings cards</b> for MPAA or BBFC</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Kiosk mode</b> for front of house</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Remote control</b> from your phone</span></li>
+      <li class="reveal"><span class="tick">✓</span><span><b>Prints tickets</b> on a thermal printer(!)</span></li>
+    </ul>
+  </section>
+</div>
+
+<section class="tinted" id="screenshots">
+  <div class="wrap">
+    <h2 class="reveal">Screenshots</h2>
+    <div class="shots">
+      <figure class="reveal">
+        <div class="window">
+          <img src="assets/programme.webp" alt="A double bill programme" loading="lazy" />
+        </div>
+        <figcaption>A double bill programme.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="window">
+          <img src="assets/boxoffice.webp" alt="The box office: ticket design, quantity, seats and printing" loading="lazy" />
+        </div>
+        <figcaption>The box office — ticket designs, seats and printing.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="window">
+          <img src="assets/remote.webp" alt="The remote control" loading="lazy" />
+        </div>
+        <figcaption>Playout remote control.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="window">
+          <img src="assets/editor.webp" alt="The programme editor" loading="lazy" />
+        </div>
+        <figcaption>Programme editor.</figcaption>
+      </figure>
+      <figure class="wide reveal">
+        <div class="window">
+          <div class="fader">
+            <img src="assets/kiosk-wall.webp" alt="Kiosk wall layout" />
+            <img src="assets/kiosk-spotlight.webp" alt="Kiosk spotlight layout" loading="lazy" />
+            <img src="assets/kiosk-board.webp" alt="Kiosk board layout" loading="lazy" />
+            <img src="assets/kiosk-split.webp" alt="Kiosk split layout" loading="lazy" />
+          </div>
+        </div>
+        <figcaption>The kiosk turns a spare screen or old tablet into the front of house.<span class="fader-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  for (const form of document.querySelectorAll('[data-signup]')) {
+    const input = form.querySelector('input[type="email"]');
+    const note = form.querySelector('.signup-note');
+    const say = (msg, cls) => { note.textContent = msg; note.className = 'signup-note' + (cls ? ' ' + cls : ''); };
+
+    form.addEventListener('submit', async (e) => {
+      if (!input.checkValidity()) {
+        e.preventDefault();
+        say('That doesn’t look like an email address.', 'err');
+        input.focus();
+        return;
+      }
+      e.preventDefault();
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        if (!res.ok) throw new Error(String(res.status));
+        form.querySelector('.controls').remove();
+        say('Thanks — now check your inbox and confirm your address to get updates.', 'ok');
+      } catch {
+        form.submit(); // let the service's own page handle it
+      }
+    });
+  }
+</script>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <img class="mk-img mk-foot mk-light" src="/assets/logo.png" width="20" height="26" alt="" />
+      <img class="mk-img mk-foot mk-dark" src="/assets/logo-dark.png" width="20" height="26" alt="" />
+      <span class="name">Cinefin</span>
+      <span class="links">
+        <a href="https://github.com/cinefin/cinefin">GitHub</a>
+        <a href="privacy.html">Privacy policy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const setTheme = (theme) => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('cinefin-theme', theme);
+    const isDark = theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
+    themeMeta.setAttribute('content', isDark ? '#05060a' : '#eff1f6');
+  };
+  setTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+  themeToggle.addEventListener('click', () => setTheme(
+    document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+  ));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}" />
+<meta name="theme-color" content="#eff1f6" />
+<script>
+  // Light is intentional default; only an explicit saved choice restores dark.
+  if (localStorage.getItem('cinefin-theme') === 'dark') {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
+<link rel="icon" type="image/png" href="{{ '/assets/logo.png' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/fonts.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <div class="wrap">
+    <nav>
+      <a class="lk" href="{{ '/' | relative_url }}" aria-label="Cinefin home">
+        <img class="mk-img mk-nav mk-light" src="{{ '/assets/logo.png' | relative_url }}" width="25" height="34" alt="" />
+        <img class="mk-img mk-nav mk-dark" src="{{ '/assets/logo-dark.png' | relative_url }}" width="25" height="34" alt="" />
+        <span class="name">Cinefin</span>
+      </a>
+      <div class="links">
+        {%- for link in page.nav %}
+        <a href="{{ link.href }}">{{ link.label }}</a>
+        {%- endfor %}
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+        <svg class="theme-icon light-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.2A8.4 8.4 0 0 1 9.8 3.8 8.4 8.4 0 1 0 20.2 14.2Z"></path></svg>
+        <svg class="theme-icon dark-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+{{ content }}
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <img class="mk-img mk-foot mk-light" src="{{ '/assets/logo.png' | relative_url }}" width="20" height="26" alt="" />
+      <img class="mk-img mk-foot mk-dark" src="{{ '/assets/logo-dark.png' | relative_url }}" width="20" height="26" alt="" />
+      <span class="name">Cinefin</span>
+      <span class="links">
+        {%- for link in page.footer_links %}
+        <a href="{{ link.href }}">{{ link.label }}</a>
+        {%- endfor %}
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const setTheme = (theme) => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('cinefin-theme', theme);
+    const isDark = theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
+    themeMeta.setAttribute('content', isDark ? '#05060a' : '#eff1f6');
+  };
+  setTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+  themeToggle.addEventListener('click', () => setTheme(
+    document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+  ));
+</script>
+
+</body>
+</html>
