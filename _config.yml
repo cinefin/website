@@ -2,6 +2,8 @@ title: Cinefin
 description: >-
   Cinefin turns your movie collection into a real night at the pictures.
   Open source self hosted software
+url: "https://cinefin.dev"
+baseurl: ""
 
 exclude:
   - README.md
