@@ -1,8 +1,11 @@
-name: Build and deploy Jekyll site to Pages
+name: Build & deploy site
 
 on:
   push:
-    branches: [master]
+    branches: [main]
+  # Rebuild periodically so newly published releases show up without a push.
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -10,35 +13,42 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment, don't cancel in-progress runs
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      # Gemfile.lock is intentionally not committed (it's platform-specific and
+      # gitignored). Drop any stale copy so Bundler resolves fresh on Ubuntu
+      # instead of installing in frozen mode against an out-of-date lockfile.
+      - name: Remove any stale lockfile
+        run: rm -f Gemfile.lock
+
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: '3.3'
           bundler-cache: true
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+      - name: Fetch release data
+        env:
+          # Authenticated requests lift the API rate limit; token can read
+          # public releases of the other Cinefin repos.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch-releases.py
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+      - name: Build
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
   deploy:
     needs: build
@@ -47,6 +57,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
