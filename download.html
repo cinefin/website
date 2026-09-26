@@ -1,0 +1,150 @@
+---
+layout: default
+title: Download Cinefin
+description: >-
+  Download the latest release of Cinefin and the Cinefin playout agent for
+nav:
+  - label: Features
+    href: "/#features"
+  - label: Screenshots
+    href: "/#screenshots"
+  - label: Download
+    href: download.html
+  - label: Docs
+    href: https://docs.cinefin.dev
+footer_links:
+  - label: GitHub
+    href: https://github.com/cinefin/cinefin
+  - label: Docs
+    href: https://docs.cinefin.dev
+  - label: Privacy policy
+    href: privacy.html
+---
+
+{%- assign rel = site.data.releases -%}
+{%- assign S = rel.server -%}
+{%- assign A = rel.agent -%}
+{%- assign srv_img = "ghcr.io/cinefin/cinefin" -%}
+{%- assign srv_rel = "https://github.com/cinefin/cinefin/releases" -%}
+{%- assign agt_rel = "https://github.com/cinefin/cinefin-playout/releases" -%}
+{%- if S.stable -%}{%- assign sdef = "stable" -%}{%- else -%}{%- assign sdef = "pre" -%}{%- endif -%}
+{%- if A.stable -%}{%- assign adef = "stable" -%}{%- else -%}{%- assign adef = "pre" -%}{%- endif -%}
+<main class="wrap dl">
+  <header class="dl-head">
+    <h1>Download <span class="accent">Cinefin</span></h1>
+  </header>
+
+  <div class="dl-split">
+    <section class="dl-product" data-product>
+      <div class="dl-product-head">
+        <p class="dl-kicker">Server</p>
+        <h2>Cinefin Server</h2>
+      </div>
+        <p class="dl-note">Cinefin server manages your library, builds
+        programmes and controls the media player. It can run on Linux, Windows
+support is currently experimental.</p>
+      <div class="dl-channel">
+        <div class="dl-tabs" role="tablist" aria-label="Cinefin release channel">
+          <button class="dl-tab" type="button" role="tab" data-ch="stable" aria-selected="{% if sdef == 'stable' %}true{% else %}false{% endif %}">
+            <span class="dl-tab-name">Stable</span>
+            <span class="dl-tab-ver">{% if S.stable %}<b>{{ S.stable.tag }}</b>{% if S.stable.commit %} · {{ S.stable.commit }}{% endif %}{% else %}not yet released{% endif %}</span>
+          </button>
+          <button class="dl-tab" type="button" role="tab" data-ch="pre" aria-selected="{% if sdef == 'pre' %}true{% else %}false{% endif %}">
+            <span class="dl-tab-name">Pre-release</span>
+            <span class="dl-tab-ver">{% if S.pre %}<b>{{ S.pre.tag }}</b>{% if S.pre.commit %} · {{ S.pre.commit }}{% endif %}{% else %}not yet released{% endif %}</span>
+          </button>
+        </div>
+      </div>
+      <div class="dl-panels">
+        <div class="dl-panel{% if sdef == 'stable' %} is-active{% endif %}" data-ch="stable">
+          {% if S.stable %}<div class="dl-grid">{% include dl-docker.html image=srv_img tag=S.stable.tag %}{% include dl-binaries.html ch=S.stable bare=true %}</div>{% else %}{% include dl-empty.html channel="stable" releases_url=srv_rel %}{% endif %}
+        </div>
+        <div class="dl-panel{% if sdef == 'pre' %} is-active{% endif %}" data-ch="pre">
+          {% if S.pre %}<div class="dl-grid">{% include dl-docker.html image=srv_img tag=S.pre.tag %}{% include dl-binaries.html ch=S.pre bare=true %}</div>{% else %}{% include dl-empty.html channel="pre-release" releases_url=srv_rel %}{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="dl-product alt" data-product>
+      <div class="dl-product-head">
+        <p class="dl-kicker">Agent</p>
+        <h2>Cinefin Playout</h2>
+      </div>
+        <p class="dl-note">Optional - drives MPV and communicates with the server.
+        You can also <a href="https://docs.cinefin.dev/guide/playback/#__tabbed_1_2">run MPV directly on the server</a> if you prefer. Windows
+        support is experimental</p>
+      <div class="dl-channel">
+        <div class="dl-tabs" role="tablist" aria-label="Cinefin Playout release channel">
+          <button class="dl-tab" type="button" role="tab" data-ch="stable" aria-selected="{% if adef == 'stable' %}true{% else %}false{% endif %}">
+            <span class="dl-tab-name">Stable</span>
+            <span class="dl-tab-ver">{% if A.stable %}<b>{{ A.stable.tag }}</b>{% if A.stable.commit %} · {{ A.stable.commit }}{% endif %}{% else %}not yet released{% endif %}</span>
+          </button>
+          <button class="dl-tab" type="button" role="tab" data-ch="pre" aria-selected="{% if adef == 'pre' %}true{% else %}false{% endif %}">
+            <span class="dl-tab-name">Pre-release</span>
+            <span class="dl-tab-ver">{% if A.pre %}<b>{{ A.pre.tag }}</b>{% if A.pre.commit %} · {{ A.pre.commit }}{% endif %}{% else %}not yet released{% endif %}</span>
+          </button>
+        </div>
+      </div>
+      <div class="dl-panels">
+        <div class="dl-panel{% if adef == 'stable' %} is-active{% endif %}" data-ch="stable">
+          {% if A.stable %}{% include dl-binaries.html ch=A.stable releases_url=agt_rel %}{% else %}{% include dl-empty.html channel="stable" releases_url=agt_rel %}{% endif %}
+        </div>
+        <div class="dl-panel{% if adef == 'pre' %} is-active{% endif %}" data-ch="pre">
+          {% if A.pre %}{% include dl-binaries.html ch=A.pre releases_url=agt_rel %}{% else %}{% include dl-empty.html channel="pre-release" releases_url=agt_rel %}{% endif %}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="dl-start">
+    <a class="btn-ghost" href="https://docs.cinefin.dev">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Zm16 0A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg>
+      Read the docs
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+    </a>
+  </div>
+</main>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-product]').forEach(function (section) {
+      var tabs = Array.prototype.slice.call(section.querySelectorAll('.dl-tab'));
+      var panels = section.querySelectorAll('.dl-panel');
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var ch = t.dataset.ch;
+          tabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
+          panels.forEach(function (p) { p.classList.toggle('is-active', p.dataset.ch === ch); });
+        });
+      });
+    });
+
+    var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.dl-cmd .copy');
+      if (!btn || btn.classList.contains('done')) return;
+      var text = btn.dataset.copy || btn.parentElement.querySelector('code').textContent;
+      var clip = btn.innerHTML;
+      var done = function () {
+        btn.classList.add('done');
+        btn.innerHTML = CHECK;
+        btn.setAttribute('aria-label', 'Copied');
+        setTimeout(function () {
+          btn.classList.remove('done');
+          btn.innerHTML = clip;
+          btn.setAttribute('aria-label', 'Copy command');
+        }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () {});
+      } else {
+        var t = document.createElement('textarea');
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        try { document.execCommand('copy'); done(); } catch (err) {}
+        t.remove();
+      }
+    });
+  })();
+</script>

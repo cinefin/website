@@ -7,9 +7,15 @@ nav:
     href: "#features"
   - label: Screenshots
     href: "#screenshots"
+  - label: Download
+    href: download.html
+  - label: Docs
+    href: https://docs.cinefin.dev
 footer_links:
   - label: GitHub
     href: https://github.com/cinefin/cinefin
+  - label: Docs
+    href: https://docs.cinefin.dev
   - label: Privacy policy
     href: privacy.html
 ---
@@ -20,16 +26,18 @@ footer_links:
                   Cinefin manages and plays trailers, ratings cards, custom
                   pre-roll and all sorts of user media. Build out programmes,
                   schedule screenings, print tickets, and run a theater at home.</p>
-    <p class="overline"><span class="free">Free and open-source</span><span class="avail">Coming soon for Linux &amp; Windows</span></p>
-    <form class="signup" data-signup action="https://buttondown.com/api/emails/embed-subscribe/cinefin" method="post" novalidate>
-      <label class="sr-only" for="signup-email">Email address</label>
-      <div class="controls">
-        <input id="signup-email" name="email" type="email" required
-               placeholder="you@example.com" autocomplete="email" />
-        <button type="submit">Get updates</button>
-      </div>
-      <p class="signup-note" role="status" aria-live="polite">Release news only · no spam · <a href="privacy.html">privacy</a></p>
-    </form>
+    <p class="overline">Free &amp; open source · Linux &amp; Windows</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="download.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+        Download
+      </a>
+      <a class="btn btn-secondary" href="https://docs.cinefin.dev">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Zm16 0A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg>
+        Read the docs
+      </a>
+    </div>
+    <p class="cta-note">Grab the latest release for your platform on <a href="https://github.com/cinefin/cinefin">GitHub</a>.</p>
   </header>
 
   <div class="hero-shot">
@@ -41,9 +49,8 @@ footer_links:
 
 <div class="wrap">
   <section id="features">
-    <h2 class="reveal">Current Features</h2>
+    <h2 class="reveal">Features</h2>
     <ul class="checklist">
-      <li class="reveal"><span class="tick">✓</span><span><b>Free and open-source:</b> self-hosted on your own hardware, no accounts, no subscriptions, no telemetry</span></li>
       <li class="reveal"><span class="tick">✓</span><span><b>Sync your movie libraries</b> from Plex and Jellyfin</span></li>
       <li class="reveal"><span class="tick">✓</span><span><b>Builds programmes:</b> trailers, pre-roll, home automation, movies</span></li>
       <li class="reveal"><span class="tick">✓</span><span><b>Playout via MPV:</b> The player comes embedded or you can connect your own instance (local or network)</span></li>
@@ -108,28 +115,4 @@ footer_links:
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-  for (const form of document.querySelectorAll('[data-signup]')) {
-    const input = form.querySelector('input[type="email"]');
-    const note = form.querySelector('.signup-note');
-    const say = (msg, cls) => { note.textContent = msg; note.className = 'signup-note' + (cls ? ' ' + cls : ''); };
-
-    form.addEventListener('submit', async (e) => {
-      if (!input.checkValidity()) {
-        e.preventDefault();
-        say('That doesn’t look like an email address.', 'err');
-        input.focus();
-        return;
-      }
-      e.preventDefault();
-      try {
-        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
-        if (!res.ok) throw new Error(String(res.status));
-        form.querySelector('.controls').remove();
-        say('Thanks — now check your inbox and confirm your address to get updates.', 'ok');
-      } catch {
-        form.submit(); // let the service's own page handle it
-      }
-    });
-  }
 </script>
