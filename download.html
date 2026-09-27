@@ -1,8 +1,11 @@
 ---
 layout: default
 title: Download Cinefin
+force_dark: true
+page_css: /assets/css/dark-shell.css
 description: >-
   Download the latest release of Cinefin and the Cinefin playout agent for
+  Linux and Windows. Free, open source, and self-hosted.
 nav:
   - label: Features
     href: "/#features"
@@ -29,6 +32,10 @@ footer_links:
 {%- assign agt_rel = "https://github.com/cinefin/cinefin-playout/releases" -%}
 {%- if S.stable -%}{%- assign sdef = "stable" -%}{%- else -%}{%- assign sdef = "pre" -%}{%- endif -%}
 {%- if A.stable -%}{%- assign adef = "stable" -%}{%- else -%}{%- assign adef = "pre" -%}{%- endif -%}
+<div class="px-beam r" aria-hidden="true"></div>
+<div class="px-beam g" aria-hidden="true"></div>
+<div class="px-beam b" aria-hidden="true"></div>
+<div class="px-grain" aria-hidden="true"></div>
 <main class="wrap dl">
   <header class="dl-head">
     <h1>Download <span class="accent">Cinefin</span></h1>

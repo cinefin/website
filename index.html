@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Cinefin - a Theater at Home
-mark_warmup: true
+force_dark: true
+page_css: /assets/css/home.css
 nav:
   - label: Features
     href: "#features"
@@ -19,100 +20,96 @@ footer_links:
   - label: Privacy policy
     href: privacy.html
 ---
-<div class="hero-bg">
-  <header class="hero wrap">
-    <h1>A theater<span class="accent"> at home.</span></h1>
-    <p class="sub">Turn your digital film collection into a functioning theater!
-                  Cinefin manages and plays trailers, ratings cards, custom
-                  pre-roll and all sorts of user media. Build out programmes,
-                  schedule screenings, print tickets, and run a theater at home.</p>
-    <p class="overline">Free &amp; open source · Linux &amp; Windows</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="download.html">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
-        Download
-      </a>
-      <a class="btn btn-secondary" href="https://docs.cinefin.dev">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Zm16 0A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg>
-        Read the docs
-      </a>
-    </div>
-    <p class="cta-note">Grab the latest release for your platform on <a href="https://github.com/cinefin/cinefin">GitHub</a>.</p>
-  </header>
+<div class="px-beam r" aria-hidden="true"></div>
+<div class="px-beam g" aria-hidden="true"></div>
+<div class="px-beam b" aria-hidden="true"></div>
+<div class="px-grain" aria-hidden="true"></div>
 
-  <div class="hero-shot">
-    <div class="window">
-      <img src="assets/library.webp" alt="The Cinefin movie library" />
-    </div>
+<header class="px-hero wrap">
+  <h1 class="px-rise pd2">A theater <span class="px-grad">at home</span></h1>
+  <p class="px-sub px-rise pd3">Turn your digital film collection into a functioning theater. Cinefin
+  manages and plays trailers, custom pre-roll, handles home automation. Build programmes, schedule screenings, print tickets, and run a theater at home.</p>
+  <div class="px-cta px-rise pd4">
+    <a class="px-btn p" href="download.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+      Download
+    </a>
+    <a class="px-btn s" href="https://docs.cinefin.dev">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Zm16 0A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg>
+      Read the docs
+    </a>
   </div>
-</div>
+  <p class="px-note px-rise pd4">Grab the latest release for your platform on <a href="https://github.com/cinefin/cinefin">GitHub</a> · self-hosted, no telemetry · Linux &amp; Windows.</p>
+  <div class="px-shot">
+    <img src="assets/library.webp" alt="The Cinefin movie library" />
+  </div>
+</header>
 
-<div class="wrap">
-  <section id="features">
-    <h2 class="reveal">Features</h2>
-    <ul class="checklist">
-      <li class="reveal"><span class="tick">✓</span><span><b>Sync your movie libraries</b> from Plex and Jellyfin</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Builds programmes:</b> trailers, pre-roll, home automation, movies</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Playout via MPV:</b> The player comes embedded or you can connect your own instance (local or network)</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Custom pre-roll</b> for your own media, ads or announcements</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Configurable trailer matching</b> that match genre, year and certification of upcoming movies</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Fully configurable</b> through the use of re-usable programme templates</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Design and load title cards</b> for screenings</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Home Assistant and generic REST integration</b> for home automation</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Generates ratings cards</b> for MPAA or BBFC</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Kiosk mode</b> for front of house</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Remote control</b> from your phone</span></li>
-      <li class="reveal"><span class="tick">✓</span><span><b>Prints tickets</b> on a thermal printer(!)</span></li>
-    </ul>
-  </section>
-</div>
-
-<section class="tinted" id="screenshots">
-  <div class="wrap">
-    <h2 class="reveal">Screenshots</h2>
-    <div class="shots">
-      <figure class="reveal">
-        <div class="window">
-          <img src="assets/programme.webp" alt="A double bill programme" loading="lazy" />
-        </div>
-        <figcaption>A double bill programme.</figcaption>
-      </figure>
-      <figure class="reveal">
-        <div class="window">
-          <img src="assets/boxoffice.webp" alt="The box office: ticket design, quantity, seats and printing" loading="lazy" />
-        </div>
-        <figcaption>The box office — ticket designs, seats and printing.</figcaption>
-      </figure>
-      <figure class="reveal">
-        <div class="window">
-          <img src="assets/remote.webp" alt="The remote control" loading="lazy" />
-        </div>
-        <figcaption>Playout remote control.</figcaption>
-      </figure>
-      <figure class="reveal">
-        <div class="window">
-          <img src="assets/editor.webp" alt="The programme editor" loading="lazy" />
-        </div>
-        <figcaption>Programme editor.</figcaption>
-      </figure>
-      <figure class="wide reveal">
-        <div class="window">
-          <div class="fader">
-            <img src="assets/kiosk-wall.webp" alt="Kiosk wall layout" />
-            <img src="assets/kiosk-spotlight.webp" alt="Kiosk spotlight layout" loading="lazy" />
-            <img src="assets/kiosk-board.webp" alt="Kiosk board layout" loading="lazy" />
-            <img src="assets/kiosk-split.webp" alt="Kiosk split layout" loading="lazy" />
-          </div>
-        </div>
-        <figcaption>The kiosk turns a spare screen or old tablet into the front of house.<span class="fader-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span></figcaption>
-      </figure>
+<section id="features" class="px-sec wrap">
+  <p class="px-eyebrow">Current Features</p>
+    <h2>Run your home theater like a pro</h2>
+  <div class="feat">
+    <div class="feat-col">
+      <h3>Build the programme</h3>
+      <ul>
+        <li><b>Sync your libraries</b> from Plex and Jellyfin</li>
+        <li><b>Trailer matching</b> by genre, year and certification</li>
+        <li><b>Custom pre-roll</b> for your own media, ads or announcements</li>
+        <li><b>Ratings cards</b> generated for MPAA or BBFC</li>
+        <li><b>Title cards</b> designed and loaded per screening</li>
+        <li><b>Re-usable templates</b>, fully configurable</li>
+      </ul>
+    </div>
+    <div class="feat-col">
+      <h3>Playout</h3>
+      <ul>
+        <li><b>Playout via MPV</b> — embedded, or your own instance on the network</li>
+        <li><b>Home Assistant &amp; REST</b> for room automation</li>
+        <li><b>Phone remote</b> to drive playback</li>
+        <li><b>Scheduled screenings</b> that run themselves</li>
+      </ul>
+    </div>
+    <div class="feat-col">
+      <h3>Front of house</h3>
+      <ul>
+        <li><b>Kiosk mode</b> for a spare screen or tablet</li>
+        <li><b>Thermal ticket printing</b></li>
+        <li><b>Box office</b> - ticket designs, seats and printing</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<script>
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }, { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-</script>
+<section id="screenshots" class="px-sec wrap">
+  <p class="px-eyebrow">Look inside</p>
+  <h2>Screenshots</h2>
+  <div class="px-shots">
+    <figure>
+      <div class="window"><img src="assets/programme.webp" alt="A double bill programme" loading="lazy" /></div>
+      <figcaption>A double bill programme.</figcaption>
+    </figure>
+    <figure>
+      <div class="window"><img src="assets/boxoffice.webp" alt="The box office: ticket design, quantity, seats and printing" loading="lazy" /></div>
+      <figcaption>The box office — ticket designs, seats and printing.</figcaption>
+    </figure>
+    <figure>
+      <div class="window"><img src="assets/remote.webp" alt="The remote control" loading="lazy" /></div>
+      <figcaption>Playout remote control.</figcaption>
+    </figure>
+    <figure>
+      <div class="window"><img src="assets/editor.webp" alt="The programme editor" loading="lazy" /></div>
+      <figcaption>Programme editor.</figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="window">
+        <div class="fader">
+          <img src="assets/kiosk-wall.webp" alt="Kiosk wall layout" />
+          <img src="assets/kiosk-spotlight.webp" alt="Kiosk spotlight layout" loading="lazy" />
+          <img src="assets/kiosk-board.webp" alt="Kiosk board layout" loading="lazy" />
+          <img src="assets/kiosk-split.webp" alt="Kiosk split layout" loading="lazy" />
+        </div>
+      </div>
+      <figcaption>The kiosk turns a spare screen or old tablet into the front of house.<span class="fader-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span></figcaption>
+    </figure>
+  </div>
+</section>

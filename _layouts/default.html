@@ -1,20 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"{% if page.force_dark %} data-theme="dark"{% endif %}>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ page.title }}</title>
 <meta name="description" content="{{ page.description | default: site.description }}" />
-<meta name="theme-color" content="#eff1f6" />
+<meta name="theme-color" content="{% if page.force_dark %}#07070c{% else %}#eff1f6{% endif %}" />
+{%- unless page.force_dark %}
 <script>
   // Light is intentional default; only an explicit saved choice restores dark.
   if (localStorage.getItem('cinefin-theme') === 'dark') {
     document.documentElement.dataset.theme = 'dark';
   }
 </script>
+{%- endunless %}
 <link rel="icon" type="image/png" href="{{ '/assets/logo.png' | relative_url }}" />
 <link rel="stylesheet" href="{{ '/fonts.css' | relative_url }}" />
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+{%- if page.page_css %}
+<link rel="stylesheet" href="{{ page.page_css | relative_url }}" />
+{%- endif %}
 </head>
 <body>
 
@@ -31,10 +36,12 @@
         <a href="{{ link.href }}">{{ link.label }}</a>
         {%- endfor %}
       </div>
+      {%- unless page.force_dark %}
       <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
         <svg class="theme-icon light-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.2A8.4 8.4 0 0 1 9.8 3.8 8.4 8.4 0 1 0 20.2 14.2Z"></path></svg>
         <svg class="theme-icon dark-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
       </button>
+      {%- endunless %}
     </nav>
   </div>
 </div>
@@ -65,19 +72,21 @@
   addEventListener('scroll', onScroll, { passive: true });
 
   const themeToggle = document.querySelector('[data-theme-toggle]');
-  const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const setTheme = (theme) => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('cinefin-theme', theme);
-    const isDark = theme === 'dark';
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
-    themeMeta.setAttribute('content', isDark ? '#05060a' : '#eff1f6');
-  };
-  setTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
-  themeToggle.addEventListener('click', () => setTheme(
-    document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
-  ));
+  if (themeToggle) {
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const setTheme = (theme) => {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('cinefin-theme', theme);
+      const isDark = theme === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
+      themeMeta.setAttribute('content', isDark ? '#05060a' : '#eff1f6');
+    };
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+    themeToggle.addEventListener('click', () => setTheme(
+      document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    ));
+  }
 </script>
 
 </body>

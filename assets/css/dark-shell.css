@@ -1,0 +1,30 @@
+/* ============================================================
+   Shared dark shell — home + download + privacy.
+   Adheres to the Cinefin UI spec (docs/cinefin-ui-spec.html):
+   near-black room, hairline borders (no shadows / no glass),
+   square panels · 2px controls, Archivo headings (sentence case),
+   Tilt Warp reserved for the wordmark, channels as the only accents.
+   The one liberty is the RGB projector wash in the background.
+   Uses the site's own dark-theme tokens (which mirror the guide).
+   ============================================================ */
+
+/* ── RGB projector wash + faint grain, behind all content ── */
+.px-beam { position: fixed; top: -30vh; width: 46vw; height: 150vh; pointer-events: none; z-index: -2; filter: blur(66px); mix-blend-mode: screen; opacity: .4; transform-origin: top center; }
+.px-beam.r { left: -6vw; background: radial-gradient(closest-side, rgba(255,47,77,.5), transparent 72%); animation: px-sway1 11s ease-in-out infinite alternate; }
+.px-beam.g { left: 28vw; background: radial-gradient(closest-side, rgba(37,232,138,.4), transparent 72%); animation: px-sway2 13s ease-in-out infinite alternate; }
+.px-beam.b { right: -6vw; background: radial-gradient(closest-side, rgba(58,123,255,.55), transparent 72%); animation: px-sway3 12s ease-in-out infinite alternate; }
+@keyframes px-sway1 { from { transform: translateX(-4vw) rotate(-5deg); } to { transform: translateX(6vw) rotate(4deg); } }
+@keyframes px-sway2 { from { transform: translateX(4vw) rotate(3deg); } to { transform: translateX(-5vw) rotate(-4deg); } }
+@keyframes px-sway3 { from { transform: translateX(3vw) rotate(4deg); } to { transform: translateX(-6vw) rotate(-3deg); } }
+.px-grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .045; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* content sits above the wash */
+.page, footer { position: relative; z-index: 2; }
+
+/* ── type per spec: headings are Archivo semibold (the wordmark keeps Tilt Warp) ── */
+.dl-head h1, .dl-product-head h2, .prose h1, .prose h2 { font-family: var(--body); font-weight: 600; letter-spacing: -.005em; }
+/* one colourful accent kept on the download hero */
+.dl-head h1 .accent { background: linear-gradient(100deg, var(--ch-r), var(--ch-g) 50%, var(--ch-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+@media (prefers-reduced-motion: reduce) { .px-beam { animation: none !important; } }

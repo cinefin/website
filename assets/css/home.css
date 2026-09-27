@@ -1,0 +1,68 @@
+@import url('dark-shell.css');
+/* ============================================================
+   Home landing. Follows the Cinefin UI spec: Archivo headings
+   (sentence case), square panels · 2px controls, hairline borders,
+   no shadows / no glass, channels as the only accents — over the
+   RGB projector wash from the shared shell.
+   ============================================================ */
+
+/* ── entrance: one orchestrated load-in (spec motion; no displacement on hover) ── */
+.px-rise { opacity: 0; animation: px-rise .7s var(--ease) forwards; }
+@keyframes px-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.pd1 { animation-delay: .05s; } .pd2 { animation-delay: .15s; } .pd3 { animation-delay: .28s; }
+.pd4 { animation-delay: .4s; } .pd5 { animation-delay: .55s; }
+
+/* ── hero ── */
+.px-hero { text-align: center; padding-block: clamp(3rem, 7vw, 5rem) 2rem; }
+.px-chip { display: inline-flex; align-items: center; gap: .5rem; padding: .34rem .7rem; color: var(--muted); background: var(--surface-1); border: 1px solid var(--border); border-radius: 2px; font-size: .8rem; }
+.px-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ch-g); }
+.px-chip b { color: var(--text); font-weight: 600; }
+.px-hero h1 { margin: 1.4rem 0 0; font: 400 clamp(2.6rem, 6.4vw, 5rem)/1.04 var(--heading); letter-spacing: .005em; color: var(--text); }
+/* the one bold colour moment: a static channel gradient on the accent phrase */
+.px-grad { background: linear-gradient(100deg, var(--ch-r), var(--ch-g) 50%, var(--ch-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.px-sub { max-width: 45rem; margin: 1.5rem auto 0; color: var(--muted); font-size: 1.1rem; line-height: 1.7; }
+.px-cta { display: flex; gap: .7rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+.px-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .72rem 1.35rem; border-radius: 2px; text-decoration: none; font: 500 .94rem var(--body); transition: background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease); }
+.px-btn svg { width: 1.05rem; height: 1.05rem; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.px-btn.p { color: #fff; background: var(--ch-b); }
+.px-btn.p:hover { background: #5b90ff; }
+.px-btn.s { color: var(--text); border: 1px solid var(--border-strong); }
+.px-btn.s:hover { border-color: var(--text); }
+.px-note { margin-top: 1.2rem; color: var(--faint); font: .8rem/1.55 var(--mono); }
+.px-note a { color: var(--ch-b); } .px-note a:hover { color: #5b90ff; }
+
+/* the page's single lifted panel — a plain square frame, depth by border only */
+.px-shot { width: min(100%, 63rem); margin: 3rem auto 0; overflow: hidden; background: var(--shell); border: 1px solid var(--border-strong); opacity: 0; animation: px-rise .7s var(--ease) .5s forwards; }
+.px-shot img { display: block; width: 100%; }
+
+/* ── section scaffolding ── */
+.px-sec { padding-block: clamp(3.5rem, 7vw, 5rem); }
+.px-eyebrow { color: var(--ch-b); font: 500 .72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.px-sec h2 { margin-top: .6rem; font: 600 clamp(1.7rem, 3.6vw, 2.4rem)/1.15 var(--body); letter-spacing: -.015em; color: var(--text); }
+.px-sec .px-lead { margin-top: .6rem; max-width: 44rem; color: var(--muted); font-size: 1rem; }
+
+/* ── features: three neutral columns on the hairline ladder (no decoration) ── */
+.feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.25rem; margin-top: 2.25rem; align-items: start; }
+.feat-col h3 { padding-bottom: .65rem; border-bottom: 1px solid var(--border-strong); color: var(--text); font: 600 1.05rem var(--body); letter-spacing: -.005em; }
+.feat-col ul { list-style: none; }
+.feat-col li { padding: .72rem 0; border-bottom: 1px solid var(--border); color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.feat-col li:last-child { border-bottom: 0; }
+.feat-col li b { color: var(--text); font-weight: 600; }
+
+/* ── screenshots (square .window frames from main.css; no lift) ── */
+.px-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.25rem; }
+.px-shots figure { min-width: 0; }
+.px-shots figure.wide { grid-column: 1 / -1; }
+.px-shots figcaption { display: flex; gap: .55rem; padding-top: .65rem; color: var(--muted); font-size: .84rem; }
+.px-shots figcaption::before { content: '—'; color: var(--ch-b); }
+.px-shots .fader-dots { display: flex; gap: .36rem; margin-left: auto; }
+.px-shots .fader-dots i { width: .38rem; height: .38rem; background: var(--border-strong); animation: dot-fade 24s infinite; }
+.px-shots .fader-dots i:nth-child(2) { animation-delay: 6s; } .px-shots .fader-dots i:nth-child(3) { animation-delay: 12s; } .px-shots .fader-dots i:nth-child(4) { animation-delay: 18s; }
+
+@media (max-width: 56rem) {
+  .feat { grid-template-columns: 1fr; }
+  .px-shots { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .px-rise, .px-shot { animation: none !important; opacity: 1; }
+}
