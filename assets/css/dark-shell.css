@@ -22,8 +22,8 @@
 /* content sits above the wash */
 .page, footer { position: relative; z-index: 2; }
 
-/* ── type: the download page keeps Tilt Warp + a solid blue accent (main.css);
-      the privacy prose headings stay Archivo semibold ── */
-.prose h1, .prose h2 { font-family: var(--body); font-weight: 600; letter-spacing: -.005em; }
+/* ── type: download + privacy headings use Tilt Warp; the download "Cinefin"
+      accent stays solid blue (from main.css) ── */
+.prose h1, .prose h2 { font-family: var(--heading); font-weight: 400; letter-spacing: .01em; }
 
 @media (prefers-reduced-motion: reduce) { .px-beam { animation: none !important; } }
