@@ -22,9 +22,8 @@
 /* content sits above the wash */
 .page, footer { position: relative; z-index: 2; }
 
-/* ── type per spec: headings are Archivo semibold (the wordmark keeps Tilt Warp) ── */
-.dl-head h1, .dl-product-head h2, .prose h1, .prose h2 { font-family: var(--body); font-weight: 600; letter-spacing: -.005em; }
-/* one colourful accent kept on the download hero */
-.dl-head h1 .accent { background: linear-gradient(100deg, var(--ch-r), var(--ch-g) 50%, var(--ch-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* ── type: the download page keeps Tilt Warp + a solid blue accent (main.css);
+      the privacy prose headings stay Archivo semibold ── */
+.prose h1, .prose h2 { font-family: var(--body); font-weight: 600; letter-spacing: -.005em; }
 
 @media (prefers-reduced-motion: reduce) { .px-beam { animation: none !important; } }
